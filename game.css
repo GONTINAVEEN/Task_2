@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.score {
+    font-size: 24px;
+}
+
+.choices {
+    margin-top: 20px;
+}
+
+.choice {
+    cursor: pointer;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.result {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}

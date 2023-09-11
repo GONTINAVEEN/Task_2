@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor Game</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 style="color: white;text-shadow: 5px 3px red,5px 5px yellow">Rock Paper Scissors</h1>
+        <div class="score">
+            <p style="color: white;text-shadow: 5px 3px red,5px 5px blue">User: <span id="user-score" style="color: white">0</span></p>
+            <p style="color: white;text-shadow: 5px 3px red,5px 5px blue">Computer: <span id="computer-score" style="color: white">0</span></p>
+        </div>
+        <div class="choices">
+            <img src="rock.png" alt="Rock" class="choice" id="rock" style="border-radius: 50%;box-shadow: 0 10px 30px rgba(0, 0, 252, 1);border:5px solid rgb(10, 34, 247)">
+            <img src="paper2.png" alt="Paper" class="choice" id="paper" style="border-radius: 50%;box-shadow: 0 10px 30px rgba(0, 0, 252, 1);border:5px solid rgb(10, 34, 247">
+            <img src="scissor1.png" alt="Scissors" class="choice" id="scissors" style="border-radius: 50%;box-shadow: 0 10px 30px rgba(0, 0, 252, 1);border:5px solid rgb(10, 34, 247">
+        </div>
+        <p class="result" id="result" style="color: white;text-shadow: 5px 3px red,5px 2px yellow">Choose your move!</p>
+    </div>
+
+    <video autoplay muted loop id="background-video">
+        <source src="naaa.mp4" type="video/mp4">
+        
+    </video>
+
+    <script>
+        const userChoices = document.querySelectorAll(".choice");
+const userScoreSpan = document.getElementById("user-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const resultMessage = document.getElementById("result");
+
+let userScore = 0;
+let computerScore = 0;
+
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    const randomNumber = Math.floor(Math.random() * 3);
+    return choices[randomNumber];
+}
+
+function win(userChoice, computerChoice) {
+    userScore++;
+    userScoreSpan.textContent = userScore;
+    resultMessage.textContent = `${userChoice} beats ${computerChoice}. You win!`;
+}
+
+function lose(userChoice, computerChoice) {
+    computerScore++;
+    computerScoreSpan.textContent = computerScore;
+    resultMessage.textContent = `${computerChoice} beats ${userChoice}. You lose!`;
+    
+}
+
+function draw(userChoice, computerChoice) {
+    resultMessage.textContent = `It's a draw!`;
+}
+
+function game(userChoice) {
+    const computerChoice = getComputerChoice();
+    switch (userChoice + computerChoice) {
+        case "rockscissors":
+        case "paperrock":
+        case "scissorspaper":
+            win(userChoice, computerChoice);
+            break;
+        case "rockpaper":
+        case "paperscissors":
+        case "scissorsrock":
+            lose(userChoice, computerChoice);
+            break;
+        case "rockrock":
+        case "paperpaper":
+        case "scissorsscissors":
+            draw(userChoice, computerChoice);
+            break;
+    }
+}
+
+userChoices.forEach(choice => {
+    choice.addEventListener("click", () => {
+        game(choice.id);
+    });
+});
+
+    </script>
+</body>
+</html>
